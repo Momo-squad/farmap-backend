@@ -1,9 +1,11 @@
 import express from "express";
 import dotenv from "dotenv";
 
-import authRouter from "./routes/auth.routes.js";
-
 import connectDB from "./utils/connectDB.js";
+
+import authRouter from "./routes/auth.routes.js";
+import userRouter from "./routes/user.routes.js";
+import sellerRouter from "./routes/seller.routes.js";
 
 dotenv.config();
 const { PORT, MONGO_URI } = process.env;
@@ -16,6 +18,8 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 app.use("/auth", authRouter)
+app.use("/user", userRouter)
+app.use("/seller", sellerRouter)
 
 app.get("/", (req, res) => {
     res.send("Farmap backend service.")
