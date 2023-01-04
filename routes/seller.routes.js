@@ -1,5 +1,5 @@
 import express from "express"
-import { getProfileData } from "../controllers/seller/index.js";
+import { getProfileData, deleteSellerAccount } from "../controllers/seller/index.js";
 import isLoggedIn from "../middlewares/isLoggedIn.middleware.js";
 import checkRoles from "../middlewares/checkRoles.middleware.js"
 
@@ -10,5 +10,6 @@ sellerRouter.use(checkRoles.isSeller)
 
 sellerRouter
     .get("/profile", getProfileData)
+    .delete("/delete", deleteSellerAccount)
 
 export default sellerRouter;
