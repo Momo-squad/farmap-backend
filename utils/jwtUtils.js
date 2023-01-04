@@ -18,7 +18,7 @@ export default jwtUtils = {
       role,
     };
 
-    let token = jwt.sign(payload, JWT_SECRET, { expiresIn: "7d" });
+    let token = jwt.sign(payload, JWT_SECRET);
 
     return token;
   },
@@ -27,6 +27,7 @@ export default jwtUtils = {
     let data = {};
 
     jwt.verify(token, JWT_SECRET, (err, payload) => {
+
       if (err) {
         isVerified = false;
       }
