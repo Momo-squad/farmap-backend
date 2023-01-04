@@ -15,28 +15,27 @@ export default jwtUtils = {
       id: userData._id,
       username: userData.username,
       email: userData.email,
-      role
+      role,
     };
-  
-    jwt.sign(payload, JWT_SECRET, { expiresIn: "7d" });
+
+    let token = jwt.sign(payload, JWT_SECRET, { expiresIn: "7d" });
 
     return token;
   },
   verifyToken(token) {
-
     let isVerified = true;
     let data = {};
 
     jwt.verify(token, JWT_SECRET, (err, payload) => {
       if (err) {
-        isVerified = false
+        isVerified = false;
       }
 
-      data = payload
+      data = payload;
     });
 
-    if(!isVerified) return false
+    if (!isVerified) return false;
 
-    return data
+    return data;
   },
 };
