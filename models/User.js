@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
 
+const { ObjectId } = mongoose.Schema.Types;
+
 const userSchema = new mongoose.Schema(
   {
     username: {
@@ -37,6 +39,14 @@ const userSchema = new mongoose.Schema(
     },
     firm_name: {
       type: String,
+    },
+    followers: {
+      type: [ObjectId],
+      ref: "users",
+    },
+    following: {
+      type: [ObjectId],
+      ref: "users",
     },
   },
   { timestamps: true }
