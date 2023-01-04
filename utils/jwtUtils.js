@@ -24,12 +24,19 @@ export default jwtUtils = {
   },
   verifyToken(token) {
 
-    jwt.verify(token, JWT_SECRET , (err, payload) => {
+    let isVerified = true;
+    let data = {};
+
+    jwt.verify(token, JWT_SECRET, (err, payload) => {
       if (err) {
-        return false;
+        isVerified = false
       }
 
-      return payload;
+      data = payload
     });
+
+    if(!isVerified) return false
+
+    return data
   },
 };
