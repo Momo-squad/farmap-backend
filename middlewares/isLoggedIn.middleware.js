@@ -10,7 +10,7 @@ const errors = {
 export default async function isLoggedIn(req, res, next) {
   const { authorization } = req.headers;
 
-  let token = authorization.split(" ")[1];
+  let token =  authorization && authorization.split(" ")[1];
 
   if (!token) {
     return res
