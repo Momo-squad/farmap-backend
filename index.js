@@ -12,11 +12,14 @@ const { PORT, MONGO_URI } = process.env;
 
 const app = express();
 
+// database connection
 connectDB(MONGO_URI)
 
+// middlewares
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
+// api routes
 app.use("/auth", authRouter)
 app.use("/user", userRouter)
 app.use("/seller", sellerRouter)
