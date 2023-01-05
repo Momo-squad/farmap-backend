@@ -4,7 +4,9 @@ import Question from "../../models/Question.js";
 const addQuestion = asyncHandler(async (req, res) => {
   let { question, tags } = req.body;
 
-  const author_id = req.user._id;
+  const author_id = req.user.id;
+
+  console.log(author_id)
 
   if (!question) {
     return res

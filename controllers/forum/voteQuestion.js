@@ -2,7 +2,7 @@ import asyncHandler from "../../utils/asyncHandler.js";
 import Question from "../../models/Question.js";
 
 const upVoteQuestion = asyncHandler(async (req, res) => {
-  let user_id = req.user._id;
+  let user_id = req.user.id;
   let { question_id } = req.body;
 
   let doesUpvoteExist = await Question.find({
@@ -43,7 +43,7 @@ const upVoteQuestion = asyncHandler(async (req, res) => {
 });
 
 const downVoteQuestion = asyncHandler(async (req, res) => {
-  let user_id = req.user._id;
+  let user_id = req.user.id;
   let { question_id } = req.body;
 
   let doesDownvoteExist = await Question.find({

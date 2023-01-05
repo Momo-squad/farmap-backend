@@ -4,7 +4,7 @@ import Answer from "../../models/Answer.js";
 
 const addAnswer = asyncHandler(async (req, res) => {
   let { answer, question_id } = req.body;
-  let author_id = req.user._id;
+  let author_id = req.user.id;
 
   if (!answer || !question_id) {
     return res
@@ -20,7 +20,7 @@ const addAnswer = asyncHandler(async (req, res) => {
       .json({ success: false, error: "Question does not exist." });
   }
 
-  let newAnswer = new Answer({ answer, question_id });
+  let newAnswer = new Answer({ answer, question_id, author_id });
 
   await newAnswer.save();
 

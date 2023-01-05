@@ -1,6 +1,6 @@
 import express from "express"
 
-import { follow, addQuestion, addAnswer } from "../controllers/forum/index.js"
+import { follow, addQuestion, addAnswer, upVoteQuestion, downVoteQuestion } from "../controllers/forum/index.js"
 
 import isLoggedIn from "../middlewares/isLoggedIn.middleware.js";
 import checkRoles from "../middlewares/checkRoles.middleware.js"
@@ -12,5 +12,7 @@ forumRouter
     .post("/follow", follow)
     .post("/add-question", addQuestion)
     .post("/add-answer", addAnswer)
-
+    .post("/upvote", upVoteQuestion)
+    .post("/downvote", downVoteQuestion)
+    
 export default forumRouter;
