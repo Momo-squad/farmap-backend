@@ -9,7 +9,7 @@ const answerSchema = new mongoose.Schema(
       ref: "users",
       required: true,
     },
-    post_id: {
+    question_id: {
       type: ObjectId,
       ref: "questions",
       required: true,
