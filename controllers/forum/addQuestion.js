@@ -2,6 +2,7 @@ import asyncHandler from "../../utils/asyncHandler.js";
 import Question from "../../models/Question.js";
 
 const addQuestion = asyncHandler(async (req, res) => {
+  
   let { question, tags } = req.body;
 
   const author_id = req.user.id;

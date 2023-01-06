@@ -3,4 +3,19 @@ import addQuestion from "./addQuestion.js";
 import addAnswer from "./addAnswer.js";
 import { downVoteQuestion, upVoteQuestion } from "./voteQuestion.js";
 
-export { follow, addQuestion, addAnswer, upVoteQuestion, downVoteQuestion };
+import {
+  getPopularQuestions,
+  getNewestQuestions,
+  getFollowingQuestions,
+} from "./getQuestions.js";
+
+export {
+  follow,
+  addQuestion,
+  addAnswer,
+  upVoteQuestion,
+  downVoteQuestion,
+  getPopularQuestions,
+  getNewestQuestions,
+  getFollowingQuestions,
+};
