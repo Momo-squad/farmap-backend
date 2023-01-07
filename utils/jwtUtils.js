@@ -27,7 +27,6 @@ export default jwtUtils = {
     let data = {};
 
     jwt.verify(token, JWT_SECRET, (err, payload) => {
-
       if (err) {
         isVerified = false;
       }
