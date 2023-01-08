@@ -48,6 +48,11 @@ const userSchema = new mongoose.Schema(
       type: [ObjectId],
       ref: "users",
     },
+    profile_pic: {
+      type: String,
+      default:
+        "https://res.cloudinary.com/du4ytrjmm/image/upload/v1673176521/farmap/blank-profile-picture-973460_1280_snt79x.png",
+    },
   },
   { timestamps: true }
 );
