@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+import cors from "cors";
 
 import connectDB from "./utils/connectDB.js";
 
@@ -19,6 +20,7 @@ connectDB(MONGO_URI)
 // middlewares
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+app.use(cors())
 
 // api routes
 app.use("/auth", authRouter)
