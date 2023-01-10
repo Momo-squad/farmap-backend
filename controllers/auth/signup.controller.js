@@ -2,12 +2,19 @@ import asyncHandler from "../../utils/asyncHandler.js";
 import bcrypt from "bcryptjs";
 import User from "../../models/User.js";
 import jwtUtils from "../../utils/jwtUtils.js";
+import uploadImage from "../../utils/uploadImage.js";
 
 const SignupController = asyncHandler(async (req, res) => {
   if (isBodyEmpty(req.body)) {
     return res
       .status(400)
       .json({ success: false, error: "All fields are required." });
+  }
+
+  if (req.files.length != 1) {
+    return res
+      .status(400)
+      .json({ success: false, error: "Error uploading profile pic." });
   }
 
   let validateDataResponse = validateData(req.body);
@@ -33,10 +40,20 @@ const SignupController = asyncHandler(async (req, res) => {
 
   req.body.password = hash;
 
+  let obj = await uploadImage(req.files[0]);
+
+  if (obj.success === false) {
+    return res
+      .status(400)
+      .json({ success: false, error: "Error uploading profile pic." });
+  }
+
+  req.body.profile_pic = obj.data.url;
+
   let newUser = new User({ ...req.body });
   let newUserData = await newUser.save();
 
-  let token = jwtUtils.generateToken(newUserData)
+  let token = jwtUtils.generateToken(newUserData);
 
   res
     .status(201)
@@ -44,6 +61,7 @@ const SignupController = asyncHandler(async (req, res) => {
 });
 
 function isBodyEmpty(obj) {
+
   let keys = Object.keys(obj);
 
   for (const key of keys) {

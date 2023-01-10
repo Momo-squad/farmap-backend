@@ -19,7 +19,7 @@ connectDB(MONGO_URI)
 
 // middlewares
 app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ limit: "100mb", extended: false }))
 app.use(cors())
 
 // api routes
