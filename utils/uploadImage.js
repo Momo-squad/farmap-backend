@@ -5,6 +5,8 @@ import {
 
 import dotenv from "dotenv";
 
+import { uuid } from "uuidv4";
+
 dotenv.config();
 
 async function uploadImage(file) {
@@ -24,7 +26,7 @@ async function uploadImage(file) {
       blobServiceClient.getContainerClient(BLOB_CONTAINER);
 
     // Create a new blob in the container
-    const blobName = file.originalname;
+    const blobName = uuid();
     const blockBlobClient = containerClient.getBlockBlobClient(blobName);
 
     // Upload the file to the blob
