@@ -1,5 +1,6 @@
 import asyncHandler from "../../utils/asyncHandler.js";
 import User from "../../models/User.js";
+import { serviceClient } from "../../index.js";
 
 const follow = asyncHandler(async (req, res) => {
   const userData = await User.findOne({
@@ -47,6 +48,18 @@ const follow = asyncHandler(async (req, res) => {
     { _id: followerId },
     { $set: { followers: userData._id } }
   );
+
+  let followed_to_data = await User.findById(followerId);
+
+  let msg = {
+    event: "followed",
+    data: {
+      followed_by: userData.username,
+      followed_to: followed_to_data.username,
+    },
+  };
+
+  serviceClient.sendToAll(msg);
 
   res
     .status(201)
