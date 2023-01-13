@@ -1,6 +1,8 @@
 import asyncHandler from "../../utils/asyncHandler.js";
 import User from "../../models/User.js";
 import { serviceClient } from "../../index.js";
+import eventTypes from "../../eventTypes.js";
+import farmapEvents from "../../events/events.js";
 
 const follow = asyncHandler(async (req, res) => {
   const userData = await User.findOne({
@@ -56,10 +58,12 @@ const follow = asyncHandler(async (req, res) => {
     data: {
       followed_by: userData.username,
       followed_to: followed_to_data.username,
+      user_id: followerId
     },
   };
 
   serviceClient.sendToAll(msg);
+  farmapEvents.emit(eventTypes.followed, msg);
 
   res
     .status(201)

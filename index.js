@@ -20,9 +20,9 @@ const serviceClient = new WebPubSubServiceClient(PUBSUB_URI, "farmap");
 connectDB(MONGO_URI);
 
 // middlewares
-app.use(express.json())
-app.use(express.urlencoded({ limit: "100mb", extended: false }))
-app.use(cors())
+app.use(express.json());
+app.use(express.urlencoded({ limit: "100mb", extended: false }));
+app.use(cors());
 
 // api routes
 app.use("/auth", authRouter);
@@ -50,4 +50,4 @@ app.listen(PORT, () => {
   console.log(`Farmap backend service is listening on port ${PORT}.`);
 });
 
-export { serviceClient }
+export { serviceClient };
