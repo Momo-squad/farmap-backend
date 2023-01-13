@@ -9,6 +9,8 @@ import {
   getFollowingQuestions,
 } from "./getQuestions.js";
 
+import getOldNotifications from "./getOldNotifications.js";
+
 export {
   follow,
   addQuestion,
@@ -18,4 +20,5 @@ export {
   getPopularQuestions,
   getNewestQuestions,
   getFollowingQuestions,
+  getOldNotifications,
 };

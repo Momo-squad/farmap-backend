@@ -9,6 +9,7 @@ import {
   getPopularQuestions,
   getNewestQuestions,
   getFollowingQuestions,
+  getOldNotifications,
 } from "../controllers/forum/index.js";
 
 import isLoggedIn from "../middlewares/isLoggedIn.middleware.js";
@@ -27,6 +28,7 @@ forumRouter
   .post("/add-answer", addAnswer)
   .post("/upvote", upVoteQuestion)
   .post("/downvote", downVoteQuestion)
-  .get("/posts/following", getFollowingQuestions);
+  .get("/posts/following", getFollowingQuestions)
+  .get("/notifications", getOldNotifications);
 
 export default forumRouter;
