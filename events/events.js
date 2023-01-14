@@ -19,4 +19,8 @@ farmapEvents.on(eventTypes.followed, async (data) => {
   }
 });
 
+farmapEvents.on(eventTypes.upvoted, async (data) => {
+  console.log(data)
+})
+
 export default farmapEvents;

@@ -1,5 +1,8 @@
 import asyncHandler from "../../utils/asyncHandler.js";
 import Question from "../../models/Question.js";
+import eventTypes from "../../eventTypes.js";
+import farmapEvents from "../../events/events.js";
+import User from "../../models/User.js";
 
 const upVoteQuestion = asyncHandler(async (req, res) => {
   let user_id = req.user.id;
@@ -38,6 +41,19 @@ const upVoteQuestion = asyncHandler(async (req, res) => {
     { _id: question_id },
     { $set: { upvotes: user_id } }
   );
+
+  let voterInfo = await User.findById(user_id);
+
+  let data = {
+    event: "upvoted",
+    data: {
+      voter_id: user_id,
+      username: voterInfo.username,
+      author_id: user_id,
+    },
+  };
+
+  farmapEvents.emit(eventTypes.upvoted, data);
 
   res.json({ success: true, message: "Upvoted successfully." });
 });
