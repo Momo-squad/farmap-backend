@@ -26,10 +26,13 @@ const LoginController = asyncHandler(async (req, res) => {
 
   let token = jwtUtils.generateToken(userData)
 
+  userData.password = ""
+
   res.json({
     success: true,
     message: "Login Successful",
-    token
+    token,
+    data: userData
   });
 });
 
