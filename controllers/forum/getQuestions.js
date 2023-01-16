@@ -5,19 +5,19 @@ import Question from "../../models/Question.js";
 const getPopularQuestions = asyncHandler(async (req, res) => {
   let data = await fetchQuestions();
 
-  res.json({ success: true, data });
+  res.json({ success: true, data, message: "Popular posts fetched." });
 });
 
 const getNewestQuestions = asyncHandler(async (req, res) => {
   let data = await fetchQuestions();
 
-  res.json({ success: true, data });
+  res.json({ success: true, data, message: "Recently added posts fetched." });
 });
 
 const getFollowingQuestions = asyncHandler(async (req, res) => {
   let data = await fetchQuestions();
 
-  res.json({ success: true, data });
+  res.json({ success: true, data, message: "Followed users post fetched." });
 });
 
 async function fetchQuestions() {
