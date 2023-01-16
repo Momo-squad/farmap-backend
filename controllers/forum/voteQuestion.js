@@ -8,6 +8,11 @@ const upVoteQuestion = asyncHandler(async (req, res) => {
   let user_id = req.user.id;
   let { question_id } = req.body;
 
+  if (!question_id)
+    return res
+      .status(400)
+      .json({ success: false, error: "Question id cannot be null." });
+
   let doesUpvoteExist = await Question.find({
     _id: question_id,
     upvotes: { $in: [user_id] },
@@ -61,6 +66,11 @@ const upVoteQuestion = asyncHandler(async (req, res) => {
 const downVoteQuestion = asyncHandler(async (req, res) => {
   let user_id = req.user.id;
   let { question_id } = req.body;
+
+  if (!question_id)
+    return res
+      .status(400)
+      .json({ success: false, error: "Question id cannot be null." });
 
   let doesDownvoteExist = await Question.find({
     _id: question_id,
