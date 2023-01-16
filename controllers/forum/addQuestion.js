@@ -1,13 +1,20 @@
 import asyncHandler from "../../utils/asyncHandler.js";
 import Question from "../../models/Question.js";
+import uploadImage from "../../utils/uploadImage.js";
 
 const addQuestion = asyncHandler(async (req, res) => {
-  
   let { question, tags } = req.body;
+  let files;
+  let imgObj;
 
   const author_id = req.user.id;
 
-  console.log(author_id)
+  console.log({ file: req.files });
+
+  if (req.files.length > 0) {
+    files = req.files[0];
+    imgObj = await uploadImage(files);
+  }
 
   if (!question) {
     return res
@@ -19,10 +26,14 @@ const addQuestion = asyncHandler(async (req, res) => {
     tags = [];
   }
 
-  let newQuestion = new Question({ author_id, question, tags });
+  console.log({ imgObj });
+
+  let imgUrl = imgObj ? imgObj.data.url : "";
+
+  let newQuestion = new Question({ author_id, question, tags, photo: imgUrl });
   await newQuestion.save();
 
-  res.json({ success: true, message: "New question added." });
+  res.json({ success: true, message: "New post added." });
 });
 
 export default addQuestion;

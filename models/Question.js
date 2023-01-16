@@ -24,8 +24,12 @@ const questionSchema = new mongoose.Schema(
       type: [ObjectId],
       ref: "users",
     },
+    photo: {
+      type: String,
+      required: false,
+    },
   },
   { timestamps: true }
 );
 
-export default mongoose.model('questions', questionSchema);
+export default mongoose.model("questions", questionSchema);

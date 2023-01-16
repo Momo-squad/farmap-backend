@@ -14,8 +14,10 @@ import {
 
 import isLoggedIn from "../middlewares/isLoggedIn.middleware.js";
 import checkRoles from "../middlewares/checkRoles.middleware.js";
+import multer from "multer";
 
 const forumRouter = express.Router();
+const upload = multer();
 
 forumRouter
   .get("/posts/popular", getPopularQuestions)
@@ -24,7 +26,7 @@ forumRouter
 forumRouter.use(isLoggedIn);
 forumRouter
   .post("/follow", follow)
-  .post("/add-question", addQuestion)
+  .post("/add-question", upload.any(), addQuestion)
   .post("/add-answer", addAnswer)
   .post("/upvote", upVoteQuestion)
   .post("/downvote", downVoteQuestion)
