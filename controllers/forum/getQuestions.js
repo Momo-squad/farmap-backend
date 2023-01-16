@@ -26,7 +26,7 @@ async function fetchQuestions() {
       path: "author_id",
       model: "users",
       select:
-        "-password -followers -following -email -phone -createdAt -updatedAt -address",
+        "-password -following -email -phone -createdAt -updatedAt -address",
     })
 
   return allQuestions.reverse();
