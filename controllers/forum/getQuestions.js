@@ -30,7 +30,7 @@ async function fetchQuestions() {
     })
     .select("-downvotes");
 
-  return allQuestions;
+  return allQuestions.reverse();
 }
 
 export { getPopularQuestions, getNewestQuestions, getFollowingQuestions };
