@@ -28,7 +28,6 @@ async function fetchQuestions() {
       select:
         "-password -followers -following -email -phone -createdAt -updatedAt -address",
     })
-    .select("-downvotes");
 
   return allQuestions.reverse();
 }
