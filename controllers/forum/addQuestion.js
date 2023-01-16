@@ -7,6 +7,10 @@ const addQuestion = asyncHandler(async (req, res) => {
   let files;
   let imgObj;
 
+  if (typeof tags === "string") {
+    tags = JSON.parse(tags);
+  }
+
   const author_id = req.user.id;
 
   console.log({ file: req.files });
