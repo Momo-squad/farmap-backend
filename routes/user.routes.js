@@ -1,5 +1,5 @@
 import express from "express";
-import { getProfileData, deleteUserAccount } from "../controllers/user/index.js";
+import { getProfileData, deleteUserAccount, createOrder, getOrder, changeStatus, deleteOrder } from "../controllers/user/index.js";
 import isLoggedIn from "../middlewares/isLoggedIn.middleware.js";
 import checkRoles from "../middlewares/checkRoles.middleware.js";
 
@@ -11,5 +11,9 @@ userRouter.use(checkRoles.isUser);
 userRouter
     .get("/profile", getProfileData)
     .delete("/delete", deleteUserAccount)
+    .post("/create-order", createOrder)
+    .get("/get-order", getOrder)
+    .post("/change-status", changeStatus)
+    .delete("/delete-order", deleteOrder)
 
 export default userRouter;
