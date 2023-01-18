@@ -10,11 +10,11 @@ const follow = asyncHandler(async (req, res) => {
     role: req.user.role,
   });
 
-  let followerId = String(req.body.user_id);
+  let followerId = req.body.user_id;
 
-  userData._id = String(userData._id);
+  userData._id = userData._id;
 
-  if (userData._id === followerId) {
+  if (userData._id.equals(followerId)) {
     return res
       .status(400)
       .json({ success: false, error: "You cannot follow to yourself." });
@@ -58,7 +58,7 @@ const follow = asyncHandler(async (req, res) => {
     data: {
       followed_by: userData.username,
       followed_to: followed_to_data.username,
-      user_id: followerId
+      user_id: followerId,
     },
   };
 
