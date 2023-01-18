@@ -59,6 +59,7 @@ const follow = asyncHandler(async (req, res) => {
       followed_by: userData.username,
       followed_to: followed_to_data.username,
       user_id: followerId,
+      createdAt: new Date()
     },
   };
 
