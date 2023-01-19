@@ -12,6 +12,7 @@ const notificationSchema = new mongoose.Schema(
       ref: "users",
       required: true,
     },
+    profile_pic: String
   },
   { timestamps: true }
 );

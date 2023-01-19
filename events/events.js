@@ -10,8 +10,9 @@ farmapEvents.on(eventTypes.followed, async (data) => {
     let res = data.data;
 
     let text = `${res.followed_by} followed you.`;
+    let profile_pic = res.profile_pic
 
-    const newNotification = new Notification({ text, user_id: res.user_id });
+    const newNotification = new Notification({ text, user_id: res.user_id, profile_pic });
 
     await newNotification.save();
   } catch (error) {
