@@ -44,7 +44,7 @@ const upVoteQuestion = asyncHandler(async (req, res) => {
 
   await Question.updateOne(
     { _id: question_id },
-    { $set: { upvotes: user_id } }
+    { $push: { upvotes: user_id } }
   );
 
   let voterInfo = await User.findById(user_id);
