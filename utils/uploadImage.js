@@ -37,6 +37,8 @@ async function uploadImage(file) {
 
     return { data: { url: imageUrl } };
   } catch (error) {
+    console.log(error)
+
     return { success: false, error };
   }
 }
